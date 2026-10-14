@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>DR. WOOF - Galería de Axel</title>
+
+    <link href="../../public/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../../public/lib/Ionicons/css/ionicons.css" rel="stylesheet">
+    <link href="../../public/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../public/css/bracket.css">
+    
+    <style>
+        body, .form-control, .btn, input, select, textarea, button, .form-control-custom { font-family: 'Nunito', sans-serif !important; }
+        .br-logo a, .header-welcome-centered h6, h1, h2, h3, h4, h5, h6, .form-control-label-custom { font-family: 'Baloo 2', cursive !important; }
+        .br-sideleft { background-color: #0c6b2e !important; }
+        .br-header { background-color: #118A3B !important; border: none !important; }
+        .br-logo { background-color: #118A3B !important; border: none !important; }
+        .br-logo a { color: #ffffff !important; font-weight: 700; }
+        .br-logo a span { color: #8bc34a !important; font-weight: 400; }
+        .br-mainpanel { background-color: #eaf6ee !important; min-height: 100vh; }
+        .br-pageheader { display: none !important; }
+        .br-pagebody { padding: 0 30px 30px 30px !important; }
+        .br-section-wrapper {
+            background-color: #ffffff !important;
+            border-radius: 0 0 40px 40px !important;
+            padding: 40px !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: none !important;
+            min-height: 85vh;
+            margin-top: 0 !important;
+        }
+        .card-gallery {
+            overflow: hidden;
+            border: 4px solid #118A3B !important;
+            border-radius: 15px !important;
+            position: relative;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        }
+        .img-gallery {
+            height: 180px;
+            object-fit: cover;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+        .card-gallery:hover .img-gallery { transform: scale(1.04); }
+        .gallery-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 6px;
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 10;
+        }
+        .card-gallery:hover .gallery-actions { opacity: 1; }
+        .btn-green-woof {
+            background-color: #118A3B !important;
+            border: none !important;
+            color: #ffffff !important;
+            border-radius: 25px !important;
+            font-weight: bold;
+            padding: 10px 25px !important;
+        }
+        .btn-custom-modal-save {
+            background-color: #118A3B !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 25px !important;
+            font-weight: bold;
+        }
+        .btn-custom-modal-edit {
+            background-color: #1a1a1a !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 25px !important;
+            font-weight: bold;
+        }
+        .btn-custom-modal-cancel {
+            background-color: #6c757d !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 25px !important;
+            font-weight: bold;
+        }
+        .input-file-hidden { display: none; }
+        .btn-custom-foto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #118A3B;
+            color: #ffffff;
+            border-radius: 25px;
+            font-weight: bold;
+            padding: 10px 25px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-bottom: 0;
+            border: none;
+        }
+        .btn-custom-foto:hover { background-color: #0c6b2e; color: #ffffff; }
+        .btn-custom-foto .tx-20 { font-size: 20px; line-height: 1; }
+        .header-welcome-centered {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            width: auto;
+        }
+        .header-welcome-centered h6 { margin: 0; font-weight: bold; font-size: 18px; text-transform: uppercase; }
+        .logged-name, .navicon-left a i, .sidebar-label, .br-menu-link { color: #ffffff !important; }
+        .br-menu-link.active { background-color: #1c9a48 !important; }
+    </style>
+</head>
+
+<body class="show-left">
+
+    <div class="br-logo"><a href="bienvenidaindex.blade.php"><span>DR. </span>WOOF<span>+</span></a></div>
+    
+    <div class="br-sideleft overflow-y-auto">
+        <label class="sidebar-label pd-x-15 mg-t-20">Menú Principal</label>
+        <div class="br-sideleft-menu">
+            <a href="bienvenidaindex.blade.php" class="br-menu-link">
+                <div class="br-menu-item"><i class="icon ion-ios-home-outline tx-22"></i><span class="menu-item-label">Inicio</span></div>
+            </a>
+            <a href="perfil.blade.php" class="br-menu-link">
+                <div class="br-menu-item"><i class="icon ion-ios-person-outline tx-24"></i><span class="menu-item-label">Información Personal</span></div>
+            </a>
+            <a href="registro-canino.blade.php" class="br-menu-link">
+                <div class="br-menu-item"><i class="icon ion-ios-plus-outline tx-24"></i><span class="menu-item-label">Registro de mascota</span></div>
+            </a>
+                        <a href="listado_mascotas.blade.php" class="br-menu-link active">
+                <div class="br-menu-item"><i class="icon ion-ios-paw tx-24"></i><span class="menu-item-label">Mis Mascotas</span></div>
+            </a>
+        </div>
+
+        <label class="sidebar-label pd-x-15 mg-t-25 mg-b-20">Herramientas</label>
+        <div class="br-sideleft-menu">
+                        
+            <a href="agenda.blade.php" class="br-menu-link">
+                <div class="br-menu-item"><i class="icon ion-ios-calendar-outline tx-24"></i><span class="menu-item-label">Agenda</span></div>
+            </a>
+            <a href="recordatorios.blade.php" class="br-menu-link">
+                <div class="br-menu-item"><i class="icon ion-ios-alarm-outline tx-24"></i><span class="menu-item-label">Recordatorios</span></div>
+            </a>
+            <a href="comentarios.blade.php" class="br-menu-link">
+                <div class="br-menu-item"><i class="icon ion-ios-chatboxes-outline tx-24"></i><span class="menu-item-label">Comentarios</span></div>
+            </a>
+            <a href="respaldo.blade.php" class="br-menu-link">
+                <div class="br-menu-item"><i class="icon ion-ios-gear-outline tx-24"></i><span class="menu-item-label">Mantenimiento</span></div>
+            </a>
+        </div>
+    </div>
+
+    <div class="br-header">
+        <div class="br-header-left">
+            <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href=""><i class="icon ion-navicon-round"></i></a></div>
+        </div>
+        <div class="header-welcome-centered">
+            <h6>GALERÍA DE FOTOS</h6>
+        </div>
+        <div class="br-header-right">
+            <nav class="nav">
+                <div class="dropdown">
+                    <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
+                        <span class="logged-name">Juan Pérez López</span>
+                        <img src="../../public/img/logo.png" class="wd-32 rounded-circle mg-l-10" alt="Perfil">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-header wd-200">
+                        <ul class="list-unstyled user-profile-nav">
+                            <li><a href="perfil.blade.php"><i class="icon ion-ios-person"></i> Perfil</a></li>
+                            <li><a href="index.blade.php"><i class="icon ion-power"></i> Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="br-mainpanel">
+        <div class="br-pagebody">
+            <div class="br-section-wrapper">
+
+                <div class="d-flex align-items-center justify-content-between mg-b-30 flex-wrap">
+                    <div>
+                        <h4 class="tx-inverse tx-bold mg-b-5">Galería: Axel</h4>
+                        <p class="mg-b-0 text-muted">Recuerdos fotográficos de tu mascota organizados cronológicamente.</p>
+                    </div>
+                    <div>
+                        <label for="foto-galeria-trigger" class="btn-custom-foto" id="label-subir">
+                            <i class="fa fa-camera mg-r-5"></i>
+                            <span id="txt-foto-galeria">Subir Foto</span>
+                            <span class="tx-20 font-weight-normal">+</span>
+                        </label>
+                        <input type="file" id="foto-galeria-trigger" accept="image/*" class="input-file-hidden" onchange="prepararSubida(this)">
+                    </div>
+                </div>
+
+                <div class="row row-sm" id="galeria-grid">
+                        <div class="col-sm-6 col-md-4 col-lg-3 mg-b-25">
+                            <div class="card card-gallery">
+                                <div class="gallery-actions">
+                                    <button class="btn btn-warning btn-icon btn-sm rounded-circle" onclick="abrirEditar('1', 'Paseo en el parque', 'Todo tranquilo')">
+                                        <i class="fa fa-edit text-white"></i>
+                                    </button>
+                                    <a href="#" class="btn btn-danger btn-icon btn-sm rounded-circle" onclick="return confirm('¿Eliminar esta foto?')">
+                                        <i class="fa fa-trash text-white"></i>
+                                    </a>
+                                </div>
+                                <img class="img-gallery" src="../../public/img/caninos/can_6a1a82b7d9b61.jpg" alt="Foto Canina">
+                                <div class="pd-15">
+                                    <p class="tx-14 tx-inverse tx-bold mg-b-5 text-uppercase titulo-render">Paseo en el parque</p>
+                                    <p class="tx-12 text-muted mg-b-8">Fecha: 2026-08-10</p>
+                                    <p class="tx-13 text-secondary mg-b-0 font-italic notas-render">Todo tranquilo</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3 mg-b-25">
+                            <div class="card card-gallery">
+                                <div class="gallery-actions">
+                                    <button class="btn btn-warning btn-icon btn-sm rounded-circle" onclick="abrirEditar('2', 'Después del baño', 'Muy contento')">
+                                        <i class="fa fa-edit text-white"></i>
+                                    </button>
+                                    <a href="#" class="btn btn-danger btn-icon btn-sm rounded-circle" onclick="return confirm('¿Eliminar esta foto?')">
+                                        <i class="fa fa-trash text-white"></i>
+                                    </a>
+                                </div>
+                                <img class="img-gallery" src="../../public/img/caninos/can_6a691704e6852.jpeg" alt="Foto Canina">
+                                <div class="pd-15">
+                                    <p class="tx-14 tx-inverse tx-bold mg-b-5 text-uppercase titulo-render">Después del baño</p>
+                                    <p class="tx-12 text-muted mg-b-8">Fecha: 2026-08-20</p>
+                                    <p class="tx-13 text-secondary mg-b-0 font-italic notas-render">Muy contento</p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Agregar Detalles al Subir Foto -->
+    <div id="uploadModal" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
+                <div class="modal-header pd-x-20 bg-gray-100">
+                    <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Detalles de la Imagen</h6>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body pd-20">
+                    <div class="form-group">
+                        <label class="form-control-label font-weight-bold">Título de la foto:</label>
+                        <input type="text" id="upload_titulo" class="form-control" placeholder="Ej. Jugando en el parque" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label font-weight-bold">Notas o Proceso clínico:</label>
+                        <textarea id="upload_notas" class="form-control" rows="3" placeholder="Añade una descripción o notas..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom-modal-save pd-x-25" onclick="subirFotoDirecto()">Guardar e Insertar</button>
+                    <button type="button" class="btn btn-custom-modal-cancel pd-x-25" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Editar Foto -->
+    <div id="editModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
+                <form action="#" method="POST">
+                    <input type="hidden" name="id_animal" value="1">
+                    <input type="hidden" name="id_foto" id="edit_id_foto">
+                    <div class="modal-header pd-x-20 bg-gray-100">
+                        <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Editar Información</h6>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body pd-20">
+                        <div class="form-group">
+                            <label class="form-control-label font-weight-bold">Título:</label>
+                            <input type="text" name="titulo" id="edit_titulo" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label font-weight-bold">Notas:</label>
+                            <textarea name="notas" id="edit_notas" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-custom-modal-edit pd-x-25">Actualizar</button>
+                        <button type="button" class="btn btn-custom-modal-cancel pd-x-25" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../public/lib/jquery/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="../../public/lib/bootstrap/bootstrap.js"></script>
+    <script src="../../public/js/bracket.js"></script>
+
+    <script>
+        var archivoSeleccionado = null;
+
+        function prepararSubida(input) {
+            if (input.files && input.files[0]) {
+                archivoSeleccionado = input.files[0];
+                document.getElementById("upload_titulo").value = "";
+                document.getElementById("upload_notas").value = "";
+                $("#uploadModal").modal("show");
+            }
+        }
+
+        function subirFotoDirecto() {
+            if (!archivoSeleccionado) return;
+
+            var tituloInput = document.getElementById("upload_titulo").value.trim();
+            var notasInput = document.getElementById("upload_notas").value.trim();
+
+            if (tituloInput === "") {
+                alert("Por favor, asigna un título a la imagen.");
+                return;
+            }
+
+            $("#uploadModal").modal("hide");
+
+            var label   = document.getElementById("label-subir");
+            var txtSpan = document.getElementById("txt-foto-galeria");
+            txtSpan.textContent      = "Subiendo...";
+            label.style.opacity      = "0.7";
+            label.style.pointerEvents = "none";
+
+            var idCanino = "1";
+            var hoy      = new Date().toISOString().split("T")[0];
+
+            var formData = new FormData();
+            formData.append("archivo_foto", archivoSeleccionado);
+            formData.append("id_animal", idCanino);
+            formData.append("titulo", tituloInput);
+            formData.append("notas", notasInput);
+            formData.append("fecha", hoy);
+            formData.append("ajax", "1");
+
+            fetch("#", {
+                method: "POST",
+                body: formData
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data.ok) {
+                    var vacio = document.getElementById("galeria-vacia");
+                    if (vacio) vacio.remove();
+
+                    var col = document.createElement("div");
+                    col.className = "col-sm-6 col-md-4 col-lg-3 mg-b-25";
+
+                    var urlFoto    = "../../public/img/" + data.ruta_foto;
+                    var urlElim    = "#";
+                    
+                    var tituloEscapado = data.titulo_foto.replace(/"/g, '&quot;');
+                    var notasEscapadas = data.notas_proceso.replace(/"/g, '&quot;');
+                    var onclickEdit = "abrirEditar(" + data.id_foto + ", `" + tituloEscapado + "`, `" + notasEscapadas + "`)";
+
+                    col.innerHTML =
+                        "<div class=\"card card-gallery\">" +
+                            "<div class=\"gallery-actions\">" +
+                                "<button class=\"btn btn-warning btn-icon btn-sm rounded-circle\" onclick=\"" + onclickEdit + "\">" +
+                                    "<i class=\"fa fa-edit text-white\"></i>" +
+                                "</button>" +
+                                "<a href=\"" + urlElim + "\" class=\"btn btn-danger btn-icon btn-sm rounded-circle\" onclick=\"return confirm('¿Eliminar esta foto?')\">" +
+                                    "<i class=\"fa fa-trash text-white\"></i>" +
+                                "</a>" +
+                            "</div>" +
+                            "<img class=\"img-gallery\" src=\"" + urlFoto + "\" alt=\"Foto Canina\">" +
+                            "<div class=\"pd-15\">" +
+                                "<p class=\"tx-14 tx-inverse tx-bold mg-b-5 text-uppercase titulo-render\">" + data.titulo_foto + "</p>" +
+                                "<p class=\"tx-12 text-muted mg-b-8\">Fecha: " + data.fecha_foto + "</p>" +
+                                "<p class=\"tx-13 text-secondary mg-b-0 font-italic notas-render\">" + data.notas_proceso + "</p>" +
+                            "</div>" +
+                        "</div>";
+
+                    var grid = document.getElementById("galeria-grid");
+                    grid.insertBefore(col, grid.firstChild);
+
+                    archivoSeleccionado = null;
+                    document.getElementById("foto-galeria-trigger").value = "";
+                } else {
+                    alert("Error: " + data.msg);
+                }
+                txtSpan.textContent       = "Subir Foto";
+                label.style.opacity       = "1";
+                label.style.pointerEvents = "auto";
+            })
+            .catch(function() {
+                alert("Error de conexión al subir la foto.");
+                txtSpan.textContent       = "Subir Foto";
+                label.style.opacity       = "1";
+                label.style.pointerEvents = "auto";
+            });
+        }
+
+        function abrirEditar(id, titulo, notas) {
+            document.getElementById("edit_id_foto").value  = id;
+            document.getElementById("edit_titulo").value   = titulo;
+            document.getElementById("edit_notas").value    = notas;
+            $("#editModal").modal("show");
+        }
+    </script>
+</body>
+</html>
